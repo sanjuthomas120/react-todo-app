@@ -4,10 +4,11 @@ import Header from './Header';
 import Footer from './Footer';
 import FilteredList from './FilteredList';
 import {applyFilter, search, FILTER_ACTIVE} from '../../services/filter';
+import Sorting from './Sorting';
 
 export default function TodoList(props) {
     const {list, filter, mode, query} = props.data;
-    const {addNew, changeFilter, changeStatus, changeMode, setSearchQuery} = props.actions;
+    const {addNew, changeFilter, changeStatus, changeMode, setSearchQuery, sortTasks } = props.actions;
     const activeItemCount = applyFilter(list, FILTER_ACTIVE).length;
     const items = search(applyFilter(list, filter), query);
 
@@ -16,6 +17,7 @@ export default function TodoList(props) {
             <div className="row">
                 <div className="todolist">
                     <Header {...{addNew, mode, query, setSearchQuery}}/>
+                    <Sorting sortTasks={sortTasks} />
                     <FilteredList {...{items, changeStatus}}/>
                     <Footer {...{activeItemCount, filter, changeFilter, mode, changeMode}}/>
                     <Info {...{mode}}/>

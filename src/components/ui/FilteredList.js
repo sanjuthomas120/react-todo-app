@@ -12,10 +12,12 @@ export default function FilteredList(props) {
     }
 
     return (
+        <div>
         <ul className="list-unstyled">
             {items.map(item => (
                 <TodoItem key={item.id} data={item} changeStatus={changeStatus}/>
             ))}
         </ul>
+        </div>
     );
 }
